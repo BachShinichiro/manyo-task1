@@ -10,6 +10,16 @@
   </head>
 
   <body>
+    <header>
+      <ul>
+        <li><%= link_to 'Top', root_path %></li>
+        <li><%= link_to 'New Task', new_task_path %></li>
+      </ul>
+    </header>
     <%= yield %>
+    <footer>
+      <p>運営会社アラサー株式会社</p>
+      <p>© 2020 AROUND_THIRTY</p>
+    </footer>
   </body>
 </html>
