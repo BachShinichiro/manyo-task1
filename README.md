@@ -38,6 +38,17 @@
 1. `$ git commit -m "コミットメッセージ"`
 1. `$ heroku create`
 <br>
+Herokuにデプロイする
+1. `$ git push heroku master`
+<br>
+データベースの移行
+1. `$ heroku run rails db:migrate`
+<br>
+アプリ名を確認する方法
+1. `$ heroku config`
+
+<br>
+
 heroku上にアプリを作成（初回のみ）
 1. `$ heroku create`　heroku上にアプリを作成（初回のみ）
 1. 必要であればheroku上にheroku buildpackを追加する<br>
