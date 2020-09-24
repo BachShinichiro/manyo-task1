@@ -1,7 +1,7 @@
 
 <p id="notice"><%= notice %></p>
 
-<h1>Tasks</h1>
+<h1>タスク一覧</h1>
 
 <table>
   <thead>
@@ -16,9 +16,9 @@
       <tr>
         <td><%= task.name %></td>
         <td><%= task.content %></td>
-        <td><%= link_to 'Show', task %></td>
-        <td><%= link_to 'Edit', edit_task_path(task) %></td>
-        <td><%= link_to 'Destroy', task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to t('helpers.submit.Show'), task %></td>
+        <td><%= link_to t('helpers.submit.Edit'), edit_task_path(task) %></td>
+        <td><%= link_to t('helpers.submit.Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -26,4 +26,4 @@
 
 <br>
 
-<%= link_to 'New Task', new_task_path %>
+<%= link_to t('helpers.submit.New_Task'), new_task_path %>

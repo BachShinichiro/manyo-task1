@@ -1,10 +1,10 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <strong>Content:</strong>
+  <strong>タスク詳細</strong>
   <%= @task.name %>
   <%= @task.content %>
 </p>
 
-<%= link_to 'Edit', edit_task_path(@task) %> |
-<%= link_to 'Back', tasks_path %>
+<%= link_to t('helpers.submit.Edit'), edit_task_path(@task) %> |
+<%= link_to t('helpers.submit.Back'), tasks_path %>

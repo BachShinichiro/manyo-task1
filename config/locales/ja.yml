@@ -144,6 +144,12 @@ ja:
       create: 登録する
       submit: 保存する
       update: 更新する
+      Show: 詳細
+      Edit: 編集
+      Destroy: 削除
+      Top: トップ
+      New_Task: 新しいタスク
+      Back: 戻る
   number:
     currency:
       format:
@@ -204,3 +210,4 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+  
