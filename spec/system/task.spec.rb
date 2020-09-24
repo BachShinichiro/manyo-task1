@@ -3,7 +3,7 @@ RSpec.describe 'タスク管理機能', type: :system do
   let!(:task) = FactoryBot.create(:task, name: 'task')
   before do
     FactoryBot.create(:task)
-    FactoryBot.create(:second_task)
+    FactoryBot.create(:task2)
     visit tasks_path
   end
 
@@ -30,7 +30,8 @@ RSpec.describe 'タスク管理機能', type: :system do
     context 'タスクが作成日時の降順に並んでいる場合' do
       it '新しいタスクが一番上に表示される' do
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content 'task'
+        expect(task_list[0]).to have_content 'task1'
+        expect(task_list[1]).to have_content 'task'
       end
     end
   end
