@@ -1,0 +1,25 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      task: タスク
+      leval: レーベル
+    attributes:
+      user:
+        name: ユーザー名
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: 確認用パスワード
+      task:
+        name: タスク名
+        content: 詳細
+        end_date: 終了期限
+        priority: 優先順位
+        status: 状態
+        user_id: ユーザーID
+      label:
+        name: ラベル名
+      labeling:
+        label_id: ラベルID
+        task_id: タスクID
+      

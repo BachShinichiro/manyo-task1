@@ -24,3 +24,33 @@
 |:---|:---|
 |begint|user_id|
 |begint|task_id|
+
+**Herokuへのデプロイ方法**
+<br>
+### Herokuへのデプロイ方法
+全てターミナル上で行う
+1. デプロイをするアプリのディレクトリに移動する。
+1. `$ heroku login`
+1. `$ rails assets:precompile RAILS_ENV=production`
+<br>
+アセットプリコンパイルを行う
+1. `$ git add -A`
+1. `$ git commit -m "コミットメッセージ"`
+1. `$ heroku create`
+<br>
+Herokuにデプロイする
+1. `$ git push heroku master`
+<br>
+データベースの移行
+1. `$ heroku run rails db:migrate`
+<br>
+アプリ名を確認する方法
+1. `$ heroku config`
+
+<br>
+
+heroku上にアプリを作成（初回のみ）
+1. `$ heroku create`　heroku上にアプリを作成（初回のみ）
+1. 必要であればheroku上にheroku buildpackを追加する<br>
+  - `$ heroku buildpacks:set heroku/ruby`
+  - `$ heroku buildpacks:add --index 1 heroku/nodejs`
