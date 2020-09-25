@@ -32,6 +32,18 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content '1つ目登録名前'
       end
     end
+    context '終了期限でソートするボタンを押した場合' do
+      it '終了期限の降順にソートされ表示される' do
+        tomorrow = Date.today + 1
+        task = FactoryBot.create(:task, name: '１つ目登録名前', content: '１つ目登録内容', limit: tomorrow)
+        task = FactoryBot.create(:task, name: '２つ目登録名前', content: '２つ目登録内容')
+        visit tasks_path
+        click_on '終了期限でソートする'
+        task_list = all('.task_row')
+        expect(task_list[0]).to have_content tomorrow
+        expect(task_list[1]).to have_content Date.today
+      end
+    end
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
