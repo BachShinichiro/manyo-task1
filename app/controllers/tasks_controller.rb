@@ -1,8 +1,16 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
   def index
-    @tasks = Task.all.order(id: "DESC")
+    if params[:sort_expired] == "true"
+      @tasks = Task.all.order(limit: "DESC")
+    # elsif params[:search][:title].present?
+    #   @tasks = Task.where('title like ?',"%#{params[:search][:title]}%")#ここであいまい検索のパラメーターを受け取る
+    else
+      @tasks = Task.all.order(created_at: "DESC")
+      # @tasks.where('title like ?','%params[:search]%') if params[:search][:title].present?
+    end
   end
+
 
   def new
     @task = Task.new
@@ -42,6 +50,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :content)
+    params.require(:task).permit(:name, :content, :limit)
   end
 end

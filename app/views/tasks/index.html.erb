@@ -2,6 +2,7 @@
 <p id="notice"><%= notice %></p>
 
 <h1><%= t('layout.task.index_title') %></h1>
+<%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 
 <table>
   <thead>
@@ -16,6 +17,7 @@
       <tr class = 'task_row'>
         <td><%= task.name %></td>
         <td><%= task.content %></td>
+        <td><%= task.limit %></td>
         <td><%= link_to t('helpers.submit.Show'), task %></td>
         <td><%= link_to t('helpers.submit.Edit'), edit_task_path(task) %></td>
         <td><%= link_to t('helpers.submit.Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
