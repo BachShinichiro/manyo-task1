@@ -18,6 +18,8 @@
     <%= form.text_area :content %>
     <%= form.label :limit %>
     <%= form.datetime_select :limit %>
+    <%= form.label :status %>
+    <%= form.select :status, ["未着手", "着手中", "完了"], include_blank: "選択して下さい" %>
   </div>
 
   <div class="actions">

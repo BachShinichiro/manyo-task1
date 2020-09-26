@@ -6,6 +6,18 @@ class TasksController < ApplicationController
     else
       @tasks = Task.all.order(created_at: "DESC")
     end
+
+    if params[:search].present?
+      if params[:name].present? && params[:status].present?
+        @tasks = Task.name_search(params[:name]).status_search(params[:status])
+      elsif params[:name].present?
+        @tasks = Task.name_search(params[:name])
+      elsif params[:status].present?
+        @tasks = Task.status_search(params[:status])
+      else
+        @tasks = Task.all.order(created_at: :desc)
+      end
+    end
   end
 
 
@@ -47,6 +59,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :content, :limit)
+    params.require(:task).permit(:name, :content, :limit, :status)
   end
 end

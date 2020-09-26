@@ -4,6 +4,14 @@
 <h1><%= t('layout.task.index_title') %></h1>
 <%= link_to "終了期限でソートする", tasks_path(sort_expired: "true") %>
 
+<%= form_with url: tasks_path, method: :get, local: true do |form| %>
+  <%= form.text_field :name %>
+  <%= form.select :status, ["未着手", "着手中", "完了"], include_blank: "選択して下さい" %>
+  <%= form.hidden_field :search, value:"true" %>
+  <%= form.submit '登録' %>
+<% end %>
+
+
 <table>
   <thead>
     <tr>
@@ -18,6 +26,7 @@
         <td><%= task.name %></td>
         <td><%= task.content %></td>
         <td><%= task.limit %></td>
+        <td><%= task.status %></td>
         <td><%= link_to t('helpers.submit.Show'), task %></td>
         <td><%= link_to t('helpers.submit.Edit'), edit_task_path(task) %></td>
         <td><%= link_to t('helpers.submit.Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
