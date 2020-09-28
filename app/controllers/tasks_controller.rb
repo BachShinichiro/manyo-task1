@@ -4,7 +4,8 @@ class TasksController < ApplicationController
     if params[:sort_expired] == "true"
       @tasks = Task.all.order(limit: "DESC").page(params[:page]).per(10)
     elsif params[:sort_priority] == "true"
-      @tasks = Task.all.order(priority: "ASC").page(params[:page]).per(10)
+      puts '優先順位のそーと'
+      @tasks = Task.all.order(priority: "DESC").page(params[:page]).per(10)
     else
       @tasks = Task.all.order(created_at: "DESC").page(params[:page]).per(10)
     end
@@ -17,10 +18,9 @@ class TasksController < ApplicationController
       elsif params[:status].present?
         @tasks = Task.status_search(params[:status]).page(params[:page]).per(10)
       else
-        @tasks = Task.all.order(created_at: :desc)
+        @tasks = Task.all.order(created_at: :desc).page(params[:page]).per(10)
       end
     end
-    @tasks = Task.all.page(params[:page]).per(10)
   end
 
 

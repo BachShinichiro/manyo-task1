@@ -44,7 +44,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         visit tasks_path
         click_on '終了期限でソートする'
         task_list = all('.task_row')
-        expect(task_list[0]).to have_content tomorrow
+        expect(task_list[0]).to have_content Date.today + 1
         expect(task_list[1]).to have_content Date.today
       end
     end
