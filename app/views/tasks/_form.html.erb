@@ -20,6 +20,8 @@
     <%= form.datetime_select :limit %>
     <%= form.label :status %>
     <%= form.select :status, ["未着手", "着手中", "完了"], include_blank: "選択して下さい" %>
+    <%= form.label :priority %>
+    <%= form.select :priority, ["高" , "中", "低"], include_blank: "選択して下さい" %>
   </div>
 
   <div class="actions">

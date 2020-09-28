@@ -3,6 +3,8 @@ class TasksController < ApplicationController
   def index
     if params[:sort_expired] == "true"
       @tasks = Task.all.order(limit: "DESC")
+    elsif params[:sort_priority] == "true"
+      @tasks = Task.all.order(priority: "ASC")
     else
       @tasks = Task.all.order(created_at: "DESC")
     end
@@ -59,6 +61,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :content, :limit, :status)
+    params.require(:task).permit(:name, :content, :limit, :status, :priority)
   end
 end
