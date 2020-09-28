@@ -13,10 +13,12 @@ RSpec.describe 'タスク管理機能', type: :system do
         fill_in :task_name, with: 'TaskName'
         fill_in :task_content, with: 'TaskContent'
         select '完了', from: :task_status
+        select '高', from: :task_priority
         click_button "登録する"
         expect(page).to have_content 'TaskName'
         expect(page).to have_content 'TaskContent'
         expect(page).to have_content '完了'
+        expect(page).to have_content '高'
       end
     end
   end
@@ -46,6 +48,7 @@ RSpec.describe 'タスク管理機能', type: :system do
         expect(task_list[1]).to have_content Date.today
       end
     end
+
   end
   describe '詳細表示機能' do
      context '任意のタスク詳細画面に遷移した場合' do
