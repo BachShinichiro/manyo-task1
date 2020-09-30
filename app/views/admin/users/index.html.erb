@@ -1,0 +1,41 @@
+<div class="container-fluid">
+  <p class="notice"><%= notice %></p>
+  <div class="row">
+    <div class="col align-self-start"><h3>Users</h3></div>
+    <br>
+  </div>
+  <br>
+  <%= link_to 'new', new_admin_user_path, class: "btn btn-outline-primary" %>
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Tasks</th>
+          <th>Email</th>
+          <th>Admin</th>
+          <th colspan="3"></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @users.each do |user| %>
+          <tr>
+            <td class="user_row"><%= user.id%></td>
+            <td class="user_row"><%= user.name %></td>
+            <td class="user_row"><%= user.tasks.size %></td>
+            <td class="user_row"><%= user.email %></td>
+            <td class="user_row"><%= user.admin %></td>
+            <td ><%= link_to 'show', admin_user_path(user) ,class: "btn btn-outline-primary" %></td>
+            <td ><%= link_to 'edit', edit_admin_user_path(user) ,class: "btn btn-outline-warning" %></td>
+            <td ><%= link_to 'delete', admin_user_path(user), method: :delete, data: { confirm: t('view.tasks.index.Are you sure?') } ,class: "btn btn-outline-danger" %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+  <%= paginate @users ,class:"pagination" %>
+
+</div>
