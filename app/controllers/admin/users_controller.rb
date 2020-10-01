@@ -49,6 +49,7 @@ class Admin::UsersController < ApplicationController
   end
   def current_user_admin
     unless current_user.admin
+      flash[:notice] = '管理者以外はアクセスできません'
       redirect_to tasks_path
     end
   end
