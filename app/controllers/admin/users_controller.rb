@@ -36,6 +36,9 @@ class Admin::UsersController < ApplicationController
     @tasks = @user.tasks.page(params[:page]).per(10)
   end
 
+  def edit
+  end
+
   def destroy
     if @user.destroy
       redirect_to admin_users_path, notice: '削除しました'

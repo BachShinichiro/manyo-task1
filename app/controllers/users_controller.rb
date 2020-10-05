@@ -20,7 +20,7 @@ class UsersController < ApplicationController
   
   def show
     @user = User.find(params[:id])
-    redirect_to tasks_path unless current_user.id == @user.id
+    check_user(@user)
   end
 
   def destroy
@@ -31,5 +31,11 @@ class UsersController < ApplicationController
   private
   def user_params
     params.require(:user).permit(:name, :email, :password, :id, :user_id,:password_confirmation)
+  end
+  def check_user(user)
+    if current_user != user
+      flash[:notice] = '他のユーザーは見れません'
+      redirect_to tasks_path 
+    end
   end
 end

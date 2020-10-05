@@ -1,5 +1,8 @@
 class TasksController < ApplicationController
   before_action :set_task, only: [:show, :edit, :update, :destroy]
+  before_action :current_user
+  before_action :authenticate_user, only:[:index]
+
   def index
     if params[:sort_expired] == "true"
       @tasks = current_user.tasks.all.order(limit: "ASC").page(params[:page]).per(10)
@@ -20,6 +23,7 @@ class TasksController < ApplicationController
         @tasks = current_user.tasks.order(created_at: :desc).page(params[:page]).per(10)
       end
     end
+    @tasks = @tasks.page(params[:page]).per(10)
   end
 
 
