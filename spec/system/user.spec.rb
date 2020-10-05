@@ -5,51 +5,51 @@ RSpec.describe 'ユーザ管理機能', type: :system do
     @user = FactoryBot.create(:user)
   end
 
-  # describe '新規作成機能' do
-  #   context 'ユーザを新規作成した場合' do
-  #     it '作成したユーザが表示される' do
-  #       visit new_user_path
-  #       fill_in "ユーザー名", with: 'bach'
-  #       fill_in "メールアドレス", with: 'bach@bach.com'
-  #       fill_in "パスワード", with: 'bachbach'
-  #       fill_in "確認用パスワード", with: 'bachbach'
-  #       click_button "アカウント登録"
-  #       expect(page).to have_content 'bach@bach.com'
-  #     end
-  #   end
-  #   context 'ユーザがログインせずタスク一覧に飛ぼうとした場合' do
-  #     it 'ログイン画面に遷移する' do
-  #       visit tasks_path
-  #       expect(page).to have_content 'ログイン'
-  #     end
-  #   end
-  # end
+  describe '新規作成機能' do
+    context 'ユーザを新規作成した場合' do
+      it '作成したユーザが表示される' do
+        visit new_user_path
+        fill_in "ユーザー名", with: 'bach'
+        fill_in "メールアドレス", with: 'bach@bach.com'
+        fill_in "パスワード", with: 'bachbach'
+        fill_in "確認用パスワード", with: 'bachbach'
+        click_button "アカウント登録"
+        expect(page).to have_content 'bach@bach.com'
+      end
+    end
+    context 'ユーザがログインせずタスク一覧に飛ぼうとした場合' do
+      it 'ログイン画面に遷移する' do
+        visit tasks_path
+        expect(page).to have_content 'ログイン'
+      end
+    end
+  end
 
-  # describe 'セッション機能' do
-  #   context 'ログインしようとすると' do
-  #     before do 
-  #       visit new_session_path
-  #       fill_in "Email", with: 'picasso@picasso.com'
-  #       fill_in "Password", with: 'picassopicasso0123'
-  #       click_button "Log in"
-  #     end
-  #     it 'ログインができること' do
-  #       expect(page).to have_content 'picasso@picasso.com'
-  #     end
-  #     it '自分の詳細画面(マイページ)に飛べること' do
-  #       expect(page).to have_content 'picasso'
-  #     end
-  #     it "一般ユーザが他人の詳細画面に飛ぶとタスク一覧ページに遷移すること" do
-  #       visit user_path(@user.id)
-  #       expect(page).to have_content "タスク一覧"
-  #     end
-  #     it "ログアウトができること" do
-  #       visit user_path(id: @user.id)
-  #       click_on ('ログアウト')
-  #       expect(page).to have_content "ログアウトしました"
-  #     end	
-  #   end
-  # end
+  describe 'セッション機能' do
+    context 'ログインしようとすると' do
+      before do 
+        visit new_session_path
+        fill_in "Email", with: 'picasso@picasso.com'
+        fill_in "Password", with: 'picassopicasso0123'
+        click_button "Log in"
+      end
+      it 'ログインができること' do
+        expect(page).to have_content 'picasso@picasso.com'
+      end
+      it '自分の詳細画面(マイページ)に飛べること' do
+        expect(page).to have_content 'picasso'
+      end
+      it "一般ユーザが他人の詳細画面に飛ぶとタスク一覧ページに遷移すること" do
+        visit user_path(@user.id)
+        expect(page).to have_content "タスク一覧"
+      end
+      it "ログアウトができること" do
+        visit user_path(id: @user.id)
+        click_on ('ログアウト')
+        expect(page).to have_content "ログアウトしました"
+      end	
+    end
+  end
 
   describe "管理画面のテスト" do
     context "管理者がログインしている場合" do
