@@ -8,3 +8,4 @@ FactoryBot.define do
     content { 'Factoryで作ったデフォルトのコンテント２' }
   end
 end
+

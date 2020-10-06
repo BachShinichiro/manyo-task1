@@ -26,11 +26,21 @@
           <div class="collapse navbar-collapse" id="navbarEexample">
             <ul class="nav navbar-nav">
               <li><%= link_to t('helpers.submit.New_Task'), new_task_path %></li>
+              <% if logged_in? %>
+                <li><%= link_to "プロフィール", user_path(current_user.id) %></li>
+                <li><%= link_to "ログアウト", session_path(current_user.id), method: :delete %></li>
+              <% else %>
+                <li><%= link_to "新規登録", new_user_path %></li>
+                <li><%= link_to "ログイン", new_session_path %></li>
+              <% end %>
             </ul>
           </div>
         </div>
       </nav>
     </header>
+    <% flash.each do |key, value| %>
+      <%= content_tag(:div, value, class: "#{key}") %>
+    <% end %>
     <%= yield %>
     <footer>
       <p>運営会社アラサー株式会社</p>

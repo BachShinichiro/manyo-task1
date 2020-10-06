@@ -1,11 +1,19 @@
 <p id="notice"><%= notice %></p>
-
-<p>
-  <strong><%= t('layout.task.Task_Show') %></strong>
-  <p>タスク名: <%= @task.name %></p>
-  <p>内容: <%= @task.content %></p>
-  <p>終了期限: <%= @task.limit %></p>
-</p>
-
-<%= link_to t('helpers.submit.Edit'), edit_task_path(@task) %> |
-<%= link_to t('helpers.submit.Back'), tasks_path %>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-6 col-md-offset-3">
+      <div class="thumbnail">
+        <h1 class="text-center"><%= t('layout.task.Task_Show') %>のページ</h1>
+        <div class="caption">
+          <p class="text-center">タスク名: <%= @task.name %></p>
+          <p class="text-center">内容: <%= @task.content %></p>
+          <p class="text-center">終了期限: <%= @task.limit %></p>
+          <p class="text-center">ステータス:   <%= @task.status %></p>
+          <p class="text-center">優先度: <%= @task.priority %></p>
+        </div>
+        <p class="text-center"><%= link_to t('helpers.submit.Edit'), edit_task_path(@task) %>|
+        <%= link_to t('helpers.submit.Back'), tasks_path %></p>
+      </div>
+    </div>
+  </div> 
+</div>
