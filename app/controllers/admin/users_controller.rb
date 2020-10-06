@@ -1,7 +1,7 @@
 class Admin::UsersController < ApplicationController
   before_action :set_user, only: [:show, :edit, :update,:destroy]
   before_action :current_user
-  before_action :current_user_admin
+  before_action :current_user_admin, only: [:show, :edit, :update, :index, :new, :create]
 
   def index
     @users = User.all.includes(:tasks).order(id: :ASC).page(params[:page]).per(10)
@@ -51,6 +51,9 @@ class Admin::UsersController < ApplicationController
     @user = User.find(params[:id])
   end
   def current_user_admin
+    # unless current_user.nil?
+    #   redirect_to tasks_path
+    # end
     unless current_user.admin
       flash[:notice] = '管理者以外はアクセスできません'
       redirect_to tasks_path
