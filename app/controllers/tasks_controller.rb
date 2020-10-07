@@ -24,11 +24,17 @@ class TasksController < ApplicationController
       end
     end
     @tasks = @tasks.page(params[:page]).per(10)
+
+    @tasks = @tasks.joins(:labels).where(labels: { id: params[:label_id] }) if params[:label_id].present?
   end
 
 
   def new
-    @task = current_user.tasks.new
+    if @current_user == nil
+      redirect_to new_session_path
+    else
+      @task = current_user.tasks.new
+    end
   end
 
   def create
@@ -65,6 +71,6 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:name, :content, :limit, :status, :priority)
+    params.require(:task).permit(:name, :content, :limit, :status, :priority, { label_ids: [] })
   end
 end

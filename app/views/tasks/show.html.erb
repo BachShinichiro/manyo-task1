@@ -10,6 +10,7 @@
           <p class="text-center">終了期限: <%= @task.limit %></p>
           <p class="text-center">ステータス:   <%= @task.status %></p>
           <p class="text-center">優先度: <%= @task.priority %></p>
+          <p class="text-center">ラベル: <% @task.labels.each do |label| %><%= label.name %><% end %></p>
         </div>
         <p class="text-center"><%= link_to t('helpers.submit.Edit'), edit_task_path(@task) %>|
         <%= link_to t('helpers.submit.Back'), tasks_path %></p>

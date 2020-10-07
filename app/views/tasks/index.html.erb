@@ -9,6 +9,7 @@
         <%= form.text_field :name %>
         <%= form.select :status, ["未着手", "着手中", "完了"], include_blank: "選択して下さい" %>
         <%= form.hidden_field :search, value:"true" %>
+        <%= form.select("label_id", Label.pluck(:name, :id), { include_blank: "ラベル" }) %>
         <%= form.submit '登録' %>
       <% end %>
       </th>
@@ -27,6 +28,7 @@
       <th>終了期限</th>
       <th>ステータス</th>
       <th>優先順位</th>
+      <th>ラベル</th>
     </tr>
   </thead>
   <tbody >
@@ -37,6 +39,7 @@
         <td><%= task.limit %></td>
         <td><%= task.status %></td>
         <td><%= task.priority %></td>
+        <td><% task.labels.each do |label| %><%= label.name %><% end %></td>
         <td><%= link_to t('helpers.submit.Show'), task %></td>
         <td><%= link_to t('helpers.submit.Edit'), edit_task_path(task) %></td>
         <td><%= link_to t('helpers.submit.Destroy'), task, method: :delete, data: { confirm: 'Are you sure?' } %></td>
