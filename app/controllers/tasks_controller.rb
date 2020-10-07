@@ -30,7 +30,11 @@ class TasksController < ApplicationController
 
 
   def new
-    @task = current_user.tasks.new
+    if @current_user == nil
+      redirect_to new_session_path
+    else
+      @task = current_user.tasks.new
+    end
   end
 
   def create
